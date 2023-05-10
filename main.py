@@ -74,7 +74,7 @@ def getContacts(id):
 def getVCard():
     json_parser()  # Runs when we type in the route in Postman
     vcards_json = json_parser()
-    return jsonify(vcards_json)  # Pushes the json to the Postman output
+    return jsonify(vcards_json) # Pushes the json to the Postman output
     
 
 # * GET route '/contacts/id/vcard' (vcard) – Parses one contact (based on id) in json back to vcf, and shows that one contact in vcf.

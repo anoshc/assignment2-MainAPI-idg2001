@@ -8,7 +8,7 @@ client = MongoClient(mongo_uri)
 
 # Find the database and collection
 db = client['test']
-collection = db['vcard']
+collection = db['vCard']
 
 # Find all documents in collection
 documents = collection.find({})

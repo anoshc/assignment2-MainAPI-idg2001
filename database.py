@@ -7,7 +7,7 @@ mongo_uri = config['MONGO_URI']
 client = MongoClient(mongo_uri)
 
 # Find the database and collection
-db = client['vCardDB']
+db = client['test']
 collection = db['vcard']
 
 # Find all documents in collection

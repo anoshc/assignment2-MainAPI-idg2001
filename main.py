@@ -72,8 +72,11 @@ def getContacts(id):
 # * GET route '/contacts/vcard' (vcard) – Parses the contacts in json back to vcf, and shows all contacts in vcf. 
 @app.route('/contacts/vcard', methods=['GET'])
 def getVCard():
+    # Find all in the database, and parses it from json back to vcard format. 
     json_parser()  # Runs when we type in the route in Postman
+    # Saves the output
     vcards_json = json_parser()
+    # Return the output
     return jsonify(vcards_json) # Pushes the json to the Postman output
     
 

@@ -1,16 +1,16 @@
 # Import modules
 from flask import Flask, render_template, request, jsonify, send_file, make_response
 import json
-import html
+# import html
 import os
 # import bson
-import vobject
+# import vobject
 
 # Import files
-import database
-import vcard_to_json_parser
-import json_to_vcard_parser
-import json_to_vcard_id_parser
+# import database
+# import vcard_to_json_parser
+# import json_to_vcard_parser
+# import json_to_vcard_id_parser
 
 # Imported functions from files
 from database import db

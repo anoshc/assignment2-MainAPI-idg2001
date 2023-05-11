@@ -3,7 +3,7 @@ from flask import Flask, render_template, request, jsonify, send_file, make_resp
 import json
 import html
 import os
-import bson
+# import bson
 import vobject
 
 # Import files
@@ -28,9 +28,9 @@ app = Flask(__name__)
 @app.route('/')
 def render_form():
     return render_template('index.html')
-   
 
-# * POST route '/contacts' endpoint - Get the uploaded vcf-file, parses it to JSON, and pushes it to the database. 
+
+# * POST route '/contacts' endpoint - Get the uploaded vcf-file, parses it to JSON, and pushes it to the database.
 @app.route('/contacts', methods=['POST'])
 def new_contact():
     # Retrive the uploaded file from the html form
@@ -44,7 +44,7 @@ def new_contact():
             return 'File read successfully and uploaded to database!'
         else:
             return 'Could not read file, try again.'  # In case of error
-    
+
     # Push the file to the database
     with open('data.json') as data:
         file_data = json.load(data)
@@ -53,14 +53,14 @@ def new_contact():
         else:
             collection.insert_one(file_data)
         return jsonify(file_data)
-        
+
 
 # * GET route '/contacts' endpoint - Show all contacts (json)
 @app.route('/contacts', methods=['GET'])
 def getAllContacts():
     result = collection.find()
     return f' {(list(result))}'
-  
+
 
 # * GET route '/contacts/<id>' - Shows one contact based on id (json)
 @app.route('/contacts/<id>', methods=['GET'])
@@ -69,16 +69,16 @@ def getContacts(id):
     return f'{result}'
 
 
-# * GET route '/contacts/vcard' (vcard) – Parses the contacts in json back to vcf, and shows all contacts in vcf. 
+# * GET route '/contacts/vcard' (vcard) – Parses the contacts in json back to vcf, and shows all contacts in vcf.
 @app.route('/contacts/vcard', methods=['GET'])
 def getVCard():
-    # Find all in the database, and parses it from json back to vcard format. 
+    # Find all in the database, and parses it from json back to vcard format.
     json_parser()  # Runs when we type in the route in Postman
     # Saves the output
     vcards_json = json_parser()
     # Return the output
-    return jsonify(vcards_json) # Pushes the json to the Postman output
-    
+    return jsonify(vcards_json)  # Pushes the json to the Postman output
+
 
 # * GET route '/contacts/id/vcard' (vcard) – Parses one contact (based on id) in json back to vcf, and shows that one contact in vcf.
 @app.route('/contacts/<id>/vcard', methods=['GET'])
